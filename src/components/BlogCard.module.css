@@ -1,0 +1,125 @@
+.card {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  cursor: pointer;
+  text-decoration: none;
+  height: 100%;
+}
+
+.imageWrap {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.card:hover .image {
+  transform: scale(1.08);
+}
+
+.category {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  padding: 0.25rem 0.75rem;
+  background: var(--gradient-primary);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: var(--radius-full);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.body {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.meta {
+  display: flex;
+  gap: 1rem;
+  font-size: 0.8rem;
+  color: var(--text-tertiary);
+  margin-bottom: 0.75rem;
+}
+
+.meta i {
+  margin-right: 0.25rem;
+}
+
+.title {
+  font-size: 1.15rem;
+  margin-bottom: 0.75rem;
+  color: var(--text-primary);
+  line-height: 1.4;
+  transition: color var(--transition-fast);
+}
+
+.card:hover .title {
+  color: var(--primary-600);
+}
+
+[data-theme="dark"] .card:hover .title {
+  color: var(--primary-400);
+}
+
+.excerpt {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  flex: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.readMore {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--primary-600);
+  margin-top: 1rem;
+  transition: gap var(--transition-fast);
+}
+
+.card:hover .readMore {
+  gap: 0.75rem;
+}
+
+[data-theme="dark"] .readMore {
+  color: var(--primary-400);
+}
+
+.listLayout {
+  flex-direction: row;
+  align-items: stretch;
+}
+
+.listLayout .imageWrap {
+  width: 320px;
+  flex-shrink: 0;
+  height: 100%;
+}
+
+@media (max-width: 640px) {
+  .listLayout {
+    flex-direction: column;
+  }
+  .listLayout .imageWrap {
+    width: 100%;
+  }
+}

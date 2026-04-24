@@ -1,0 +1,197 @@
+[debug] [2026-04-24T13:47:11.747Z] ----------------------------------------------------------------------
+[debug] [2026-04-24T13:47:11.755Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Lenovo\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2026-04-24T13:47:11.755Z] CLI Version:   15.0.0
+[debug] [2026-04-24T13:47:11.756Z] Platform:      win32
+[debug] [2026-04-24T13:47:11.756Z] Node Version:  v24.11.0
+[debug] [2026-04-24T13:47:11.756Z] Time:          Fri Apr 24 2026 19:17:11 GMT+0530 (India Standard Time)
+[debug] [2026-04-24T13:47:11.757Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2026-04-24T13:47:29.949Z] Object "/apphosting" in "firebase.json" is missing required property: {"missingProperty":"backendId"}
+[debug] [2026-04-24T13:47:29.965Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be array
+[debug] [2026-04-24T13:47:29.966Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[debug] [2026-04-24T13:47:30.137Z] Object "/apphosting" in "firebase.json" is missing required property: {"missingProperty":"backendId"}
+[debug] [2026-04-24T13:47:30.137Z] Field "/apphosting" in "firebase.json" is possibly invalid: must be array
+[debug] [2026-04-24T13:47:30.137Z] Field "/apphosting" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  D:\Dr_BharatBaishya-main
+
+Before we get started, keep in mind:
+
+  * You are initializing within an existing Firebase project directory
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] 
+[debug] [2026-04-24T13:48:52.883Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-04-24T13:48:52.884Z] > authorizing via signed-in user (kulendeka05@gmail.com)
+[debug] [2026-04-24T13:48:52.887Z] Checked if tokens are valid: true, expires at: 1777042003709
+[debug] [2026-04-24T13:48:52.887Z] Checked if tokens are valid: true, expires at: 1777042003709
+[debug] [2026-04-24T13:48:52.890Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects pageSize=100
+[debug] [2026-04-24T13:48:55.860Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects 200
+[debug] [2026-04-24T13:48:55.860Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects [omitted]
+[info] 
+=== Firestore Setup
+[info] i  firestore: ensuring required API firestore.googleapis.com is enabled... 
+[debug] [2026-04-24T13:50:24.093Z] Checked if tokens are valid: true, expires at: 1777042003709
+[debug] [2026-04-24T13:50:24.107Z] Checked if tokens are valid: true, expires at: 1777042003709
+[debug] [2026-04-24T13:50:24.109Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/bharat-5bce5/services/firestore.googleapis.com [none]
+[debug] [2026-04-24T13:50:24.110Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/bharat-5bce5/services/firestore.googleapis.com x-goog-quota-user=projects/bharat-5bce5
+[debug] [2026-04-24T13:50:27.288Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/bharat-5bce5/services/firestore.googleapis.com 200
+[debug] [2026-04-24T13:50:27.288Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/bharat-5bce5/services/firestore.googleapis.com [omitted]
+[info] +  firestore: required API firestore.googleapis.com is enabled 
+[debug] [2026-04-24T13:50:27.344Z] Checked if tokens are valid: true, expires at: 1777042003709
+[debug] [2026-04-24T13:50:27.345Z] Checked if tokens are valid: true, expires at: 1777042003709
+[debug] [2026-04-24T13:50:27.345Z] >>> [apiv2][query] GET https://firestore.googleapis.com/v1/projects/bharat-5bce5/databases [none]
+[debug] [2026-04-24T13:50:28.492Z] <<< [apiv2][status] GET https://firestore.googleapis.com/v1/projects/bharat-5bce5/databases 200
+[debug] [2026-04-24T13:50:28.492Z] <<< [apiv2][body] GET https://firestore.googleapis.com/v1/projects/bharat-5bce5/databases {"databases":[{"name":"projects/bharat-5bce5/databases/(default)","uid":"8292566f-3bd5-4764-927f-fb1c0368f106","createTime":"2026-04-18T20:17:56.849706Z","updateTime":"2026-04-18T20:17:56.849706Z","locationId":"asia-south1","type":"FIRESTORE_NATIVE","concurrencyMode":"PESSIMISTIC","versionRetentionPeriod":"3600s","earliestVersionTime":"2026-04-24T12:50:31.621532Z","appEngineIntegrationMode":"DISABLED","keyPrefix":"j","pointInTimeRecoveryEnablement":"POINT_IN_TIME_RECOVERY_DISABLED","deleteProtectionState":"DELETE_PROTECTION_DISABLED","databaseEdition":"STANDARD","freeTier":true,"realtimeUpdatesMode":"REALTIME_UPDATES_MODE_ENABLED","etag":"ILHE8uLQhpQDMO2rzbWd+JMD"}]}
+[info] 
+[info] Firestore Security Rules allow you to define how and when to allow
+[info] requests. You can keep these rules in your project directory
+[info] and publish them with firebase deploy.
+[info] 
+[debug] [2026-04-24T13:50:38.829Z] Checked if tokens are valid: true, expires at: 1777042003709
+[debug] [2026-04-24T13:50:38.897Z] Checked if tokens are valid: true, expires at: 1777042003709
+[debug] [2026-04-24T13:50:38.918Z] >>> [apiv2][query] GET https://firebaserules.googleapis.com/v1/projects/bharat-5bce5/releases pageSize=10&pageToken=
+[debug] [2026-04-24T13:50:40.956Z] <<< [apiv2][status] GET https://firebaserules.googleapis.com/v1/projects/bharat-5bce5/releases 200
+[debug] [2026-04-24T13:50:40.956Z] <<< [apiv2][body] GET https://firebaserules.googleapis.com/v1/projects/bharat-5bce5/releases {"releases":[{"name":"projects/bharat-5bce5/releases/cloud.firestore","rulesetName":"projects/bharat-5bce5/rulesets/40053b75-17bf-42f6-a446-f1bc341bb5da","createTime":"2026-04-18T20:18:02.668316Z","updateTime":"2026-04-18T20:18:02.668316Z"}]}
+[debug] [2026-04-24T13:50:40.958Z] Checked if tokens are valid: true, expires at: 1777042003709
+[debug] [2026-04-24T13:50:40.958Z] Checked if tokens are valid: true, expires at: 1777042003709
+[debug] [2026-04-24T13:50:40.958Z] >>> [apiv2][query] GET https://firebaserules.googleapis.com/v1/projects/bharat-5bce5/rulesets/40053b75-17bf-42f6-a446-f1bc341bb5da [none]
+[debug] [2026-04-24T13:50:42.340Z] <<< [apiv2][status] GET https://firebaserules.googleapis.com/v1/projects/bharat-5bce5/rulesets/40053b75-17bf-42f6-a446-f1bc341bb5da 200
+[debug] [2026-04-24T13:50:42.341Z] <<< [apiv2][body] GET https://firebaserules.googleapis.com/v1/projects/bharat-5bce5/rulesets/40053b75-17bf-42f6-a446-f1bc341bb5da [omitted]
+[info] i  Downloaded the existing Firestore Security Rules from the Firebase console 
+[info] 
+[info] Firestore indexes allow you to perform complex queries while
+[info] maintaining performance that scales with the size of the result
+[info] set. You can keep index definitions in your project directory
+[info] and publish them with firebase deploy.
+[info] 
+[debug] [2026-04-24T13:50:46.810Z] Checked if tokens are valid: true, expires at: 1777042003709
+[debug] [2026-04-24T13:50:46.810Z] Checked if tokens are valid: true, expires at: 1777042003709
+[debug] [2026-04-24T13:50:46.811Z] Checked if tokens are valid: true, expires at: 1777042003709
+[debug] [2026-04-24T13:50:46.811Z] Checked if tokens are valid: true, expires at: 1777042003709
+[debug] [2026-04-24T13:50:46.811Z] >>> [apiv2][query] GET https://firestore.googleapis.com/v1/projects/bharat-5bce5/databases/(default)/collectionGroups/-/indexes [none]
+[debug] [2026-04-24T13:50:46.819Z] >>> [apiv2][query] GET https://firestore.googleapis.com/v1/projects/bharat-5bce5/databases/(default)/collectionGroups/-/fields?filter=indexConfig.usesAncestorConfig=false OR ttlConfig:* [none]
+[debug] [2026-04-24T13:50:47.386Z] <<< [apiv2][status] GET https://firestore.googleapis.com/v1/projects/bharat-5bce5/databases/(default)/collectionGroups/-/indexes 200
+[debug] [2026-04-24T13:50:47.386Z] <<< [apiv2][body] GET https://firestore.googleapis.com/v1/projects/bharat-5bce5/databases/(default)/collectionGroups/-/indexes {"indexes":[{"name":"projects/bharat-5bce5/databases/(default)/collectionGroups/prescriptions/indexes/CICAgOjXh4EK","queryScope":"COLLECTION","fields":[{"fieldPath":"phone","order":"ASCENDING"},{"fieldPath":"createdAt","order":"DESCENDING"},{"fieldPath":"__name__","order":"DESCENDING"}],"state":"READY","density":"SPARSE_ALL"}]}
+[debug] [2026-04-24T13:50:47.387Z] <<< [apiv2][status] GET https://firestore.googleapis.com/v1/projects/bharat-5bce5/databases/(default)/collectionGroups/-/fields?filter=indexConfig.usesAncestorConfig=false OR ttlConfig:* 200
+[debug] [2026-04-24T13:50:47.387Z] <<< [apiv2][body] GET https://firestore.googleapis.com/v1/projects/bharat-5bce5/databases/(default)/collectionGroups/-/fields?filter=indexConfig.usesAncestorConfig=false OR ttlConfig:* {"fields":[{"name":"projects/bharat-5bce5/databases/(default)/collectionGroups/__default__/fields/*","indexConfig":{"indexes":[{"queryScope":"COLLECTION","fields":[{"fieldPath":"*","order":"ASCENDING"}],"state":"READY"},{"queryScope":"COLLECTION","fields":[{"fieldPath":"*","order":"DESCENDING"}],"state":"READY"},{"queryScope":"COLLECTION","fields":[{"fieldPath":"*","arrayConfig":"CONTAINS"}],"state":"READY"}]}}]}
+[info] i  Downloaded the existing Firestore indexes from the Firebase console 
+[info] +  Wrote firestore.rules 
+[info] +  Wrote firestore.indexes.json 
+[info] 
+=== App Hosting Setup
+[debug] [2026-04-24T13:50:47.801Z] Checked if tokens are valid: true, expires at: 1777042003709
+[debug] [2026-04-24T13:50:47.804Z] Checked if tokens are valid: true, expires at: 1777042003709
+[debug] [2026-04-24T13:50:47.808Z] >>> [apiv2][query] GET https://cloudbilling.googleapis.com/v1/projects/bharat-5bce5/billingInfo [none]
+[debug] [2026-04-24T13:50:49.539Z] <<< [apiv2][status] GET https://cloudbilling.googleapis.com/v1/projects/bharat-5bce5/billingInfo 200
+[debug] [2026-04-24T13:50:49.539Z] <<< [apiv2][body] GET https://cloudbilling.googleapis.com/v1/projects/bharat-5bce5/billingInfo {"name":"projects/bharat-5bce5/billingInfo","projectId":"bharat-5bce5","billingAccountName":"billingAccounts/01FD0B-B8DAAD-849FDE","billingEnabled":true}
+[debug] [2026-04-24T13:50:49.541Z] Checked if tokens are valid: true, expires at: 1777042003709
+[debug] [2026-04-24T13:50:49.541Z] Checked if tokens are valid: true, expires at: 1777042003709
+[debug] [2026-04-24T13:50:49.542Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/bharat-5bce5/services/firebaseapphosting.googleapis.com [none]
+[debug] [2026-04-24T13:50:49.542Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/bharat-5bce5/services/firebaseapphosting.googleapis.com x-goog-quota-user=projects/bharat-5bce5
+[debug] [2026-04-24T13:50:51.394Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/bharat-5bce5/services/firebaseapphosting.googleapis.com 200
+[debug] [2026-04-24T13:50:51.395Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/bharat-5bce5/services/firebaseapphosting.googleapis.com [omitted]
+[debug] [2026-04-24T13:50:51.396Z] Checked if tokens are valid: true, expires at: 1777042003709
+[debug] [2026-04-24T13:50:51.396Z] Checked if tokens are valid: true, expires at: 1777042003709
+[debug] [2026-04-24T13:50:51.397Z] >>> [apiv2][query] POST https://serviceusage.googleapis.com/v1/projects/bharat-5bce5/services/firebaseapphosting.googleapis.com:enable [none]
+[debug] [2026-04-24T13:50:51.397Z] >>> [apiv2][(partial)header] POST https://serviceusage.googleapis.com/v1/projects/bharat-5bce5/services/firebaseapphosting.googleapis.com:enable x-goog-quota-user=projects/bharat-5bce5
+[debug] [2026-04-24T13:50:53.233Z] <<< [apiv2][status] POST https://serviceusage.googleapis.com/v1/projects/bharat-5bce5/services/firebaseapphosting.googleapis.com:enable 200
+[debug] [2026-04-24T13:50:53.233Z] <<< [apiv2][body] POST https://serviceusage.googleapis.com/v1/projects/bharat-5bce5/services/firebaseapphosting.googleapis.com:enable [omitted]
+[debug] [2026-04-24T13:51:03.391Z] Checked if tokens are valid: true, expires at: 1777042003709
+[debug] [2026-04-24T13:51:03.420Z] Checked if tokens are valid: true, expires at: 1777042003709
+[debug] [2026-04-24T13:51:03.422Z] Checked if tokens are valid: true, expires at: 1777042003709
+[debug] [2026-04-24T13:51:03.422Z] Checked if tokens are valid: true, expires at: 1777042003709
+[debug] [2026-04-24T13:51:03.422Z] Checked if tokens are valid: true, expires at: 1777042003709
+[debug] [2026-04-24T13:51:03.423Z] Checked if tokens are valid: true, expires at: 1777042003709
+[debug] [2026-04-24T13:51:03.423Z] Checked if tokens are valid: true, expires at: 1777042003709
+[debug] [2026-04-24T13:51:03.424Z] Checked if tokens are valid: true, expires at: 1777042003709
+[debug] [2026-04-24T13:51:03.442Z] Checked if tokens are valid: true, expires at: 1777042003709
+[debug] [2026-04-24T13:51:03.442Z] Checked if tokens are valid: true, expires at: 1777042003709
+[debug] [2026-04-24T13:51:03.443Z] Checked if tokens are valid: true, expires at: 1777042003709
+[debug] [2026-04-24T13:51:03.443Z] Checked if tokens are valid: true, expires at: 1777042003709
+[debug] [2026-04-24T13:51:03.443Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/bharat-5bce5/services/developerconnect.googleapis.com [none]
+[debug] [2026-04-24T13:51:03.443Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/bharat-5bce5/services/developerconnect.googleapis.com x-goog-quota-user=projects/bharat-5bce5
+[debug] [2026-04-24T13:51:03.924Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/bharat-5bce5/services/cloudbuild.googleapis.com [none]
+[debug] [2026-04-24T13:51:03.925Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/bharat-5bce5/services/cloudbuild.googleapis.com x-goog-quota-user=projects/bharat-5bce5
+[debug] [2026-04-24T13:51:04.005Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/bharat-5bce5/services/secretmanager.googleapis.com [none]
+[debug] [2026-04-24T13:51:04.005Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/bharat-5bce5/services/secretmanager.googleapis.com x-goog-quota-user=projects/bharat-5bce5
+[debug] [2026-04-24T13:51:04.007Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/bharat-5bce5/services/run.googleapis.com [none]
+[debug] [2026-04-24T13:51:04.007Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/bharat-5bce5/services/run.googleapis.com x-goog-quota-user=projects/bharat-5bce5
+[debug] [2026-04-24T13:51:04.128Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/bharat-5bce5/services/artifactregistry.googleapis.com [none]
+[debug] [2026-04-24T13:51:04.128Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/bharat-5bce5/services/artifactregistry.googleapis.com x-goog-quota-user=projects/bharat-5bce5
+[debug] [2026-04-24T13:51:04.155Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/bharat-5bce5/services/iam.googleapis.com [none]
+[debug] [2026-04-24T13:51:04.156Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/bharat-5bce5/services/iam.googleapis.com x-goog-quota-user=projects/bharat-5bce5
+[debug] [2026-04-24T13:51:05.920Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/bharat-5bce5/services/developerconnect.googleapis.com 200
+[debug] [2026-04-24T13:51:05.920Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/bharat-5bce5/services/developerconnect.googleapis.com [omitted]
+[debug] [2026-04-24T13:51:05.920Z] Checked if tokens are valid: true, expires at: 1777042003709
+[debug] [2026-04-24T13:51:05.920Z] Checked if tokens are valid: true, expires at: 1777042003709
+[debug] [2026-04-24T13:51:05.921Z] >>> [apiv2][query] POST https://serviceusage.googleapis.com/v1/projects/bharat-5bce5/services/developerconnect.googleapis.com:enable [none]
+[debug] [2026-04-24T13:51:05.921Z] >>> [apiv2][(partial)header] POST https://serviceusage.googleapis.com/v1/projects/bharat-5bce5/services/developerconnect.googleapis.com:enable x-goog-quota-user=projects/bharat-5bce5
+[debug] [2026-04-24T13:51:05.934Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/bharat-5bce5/services/secretmanager.googleapis.com 200
+[debug] [2026-04-24T13:51:05.934Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/bharat-5bce5/services/secretmanager.googleapis.com [omitted]
+[debug] [2026-04-24T13:51:05.953Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/bharat-5bce5/services/cloudbuild.googleapis.com 200
+[debug] [2026-04-24T13:51:05.953Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/bharat-5bce5/services/cloudbuild.googleapis.com [omitted]
+[debug] [2026-04-24T13:51:05.963Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/bharat-5bce5/services/iam.googleapis.com 200
+[debug] [2026-04-24T13:51:05.963Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/bharat-5bce5/services/iam.googleapis.com [omitted]
+[debug] [2026-04-24T13:51:06.005Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/bharat-5bce5/services/run.googleapis.com 200
+[debug] [2026-04-24T13:51:06.006Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/bharat-5bce5/services/run.googleapis.com [omitted]
+[debug] [2026-04-24T13:51:06.016Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/bharat-5bce5/services/artifactregistry.googleapis.com 200
+[debug] [2026-04-24T13:51:06.016Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/bharat-5bce5/services/artifactregistry.googleapis.com [omitted]
+[debug] [2026-04-24T13:51:07.623Z] <<< [apiv2][status] POST https://serviceusage.googleapis.com/v1/projects/bharat-5bce5/services/developerconnect.googleapis.com:enable 200
+[debug] [2026-04-24T13:51:07.623Z] <<< [apiv2][body] POST https://serviceusage.googleapis.com/v1/projects/bharat-5bce5/services/developerconnect.googleapis.com:enable [omitted]
+[debug] [2026-04-24T13:51:17.660Z] Checked if tokens are valid: true, expires at: 1777042003709
+[debug] [2026-04-24T13:51:17.685Z] Checked if tokens are valid: true, expires at: 1777042003709
+[debug] [2026-04-24T13:51:17.686Z] >>> [apiv2][query] POST https://iam.googleapis.com/v1/projects/bharat-5bce5/serviceAccounts/firebase-app-hosting-compute@bharat-5bce5.iam.gserviceaccount.com:testIamPermissions [none]
+[debug] [2026-04-24T13:51:17.686Z] >>> [apiv2][(partial)header] POST https://iam.googleapis.com/v1/projects/bharat-5bce5/serviceAccounts/firebase-app-hosting-compute@bharat-5bce5.iam.gserviceaccount.com:testIamPermissions x-goog-quota-user=projects/bharat-5bce5
+[debug] [2026-04-24T13:51:17.771Z] >>> [apiv2][body] POST https://iam.googleapis.com/v1/projects/bharat-5bce5/serviceAccounts/firebase-app-hosting-compute@bharat-5bce5.iam.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2026-04-24T13:51:20.650Z] <<< [apiv2][status] POST https://iam.googleapis.com/v1/projects/bharat-5bce5/serviceAccounts/firebase-app-hosting-compute@bharat-5bce5.iam.gserviceaccount.com:testIamPermissions 404
+[debug] [2026-04-24T13:51:20.650Z] <<< [apiv2][body] POST https://iam.googleapis.com/v1/projects/bharat-5bce5/serviceAccounts/firebase-app-hosting-compute@bharat-5bce5.iam.gserviceaccount.com:testIamPermissions {"error":{"code":404,"message":"Unknown service account","status":"NOT_FOUND"}}
+[debug] [2026-04-24T13:51:20.653Z] Checked if tokens are valid: true, expires at: 1777042003709
+[debug] [2026-04-24T13:51:20.654Z] Checked if tokens are valid: true, expires at: 1777042003709
+[debug] [2026-04-24T13:51:20.654Z] >>> [apiv2][query] POST https://iam.googleapis.com/v1/projects/bharat-5bce5/serviceAccounts [none]
+[debug] [2026-04-24T13:51:20.654Z] >>> [apiv2][body] POST https://iam.googleapis.com/v1/projects/bharat-5bce5/serviceAccounts {"accountId":"firebase-app-hosting-compute","serviceAccount":{"displayName":"Firebase App Hosting compute service account","description":"Default service account used to run builds and deploys for Firebase App Hosting"}}
+[debug] [2026-04-24T13:51:21.537Z] <<< [apiv2][status] POST https://iam.googleapis.com/v1/projects/bharat-5bce5/serviceAccounts 200
+[debug] [2026-04-24T13:51:21.537Z] <<< [apiv2][body] POST https://iam.googleapis.com/v1/projects/bharat-5bce5/serviceAccounts [omitted]
+[debug] [2026-04-24T13:51:21.538Z] Checked if tokens are valid: true, expires at: 1777042003709
+[debug] [2026-04-24T13:51:21.538Z] Checked if tokens are valid: true, expires at: 1777042003709
+[debug] [2026-04-24T13:51:21.539Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/bharat-5bce5:getIamPolicy [none]
+[debug] [2026-04-24T13:51:23.215Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/bharat-5bce5:getIamPolicy 200
+[debug] [2026-04-24T13:51:23.215Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/bharat-5bce5:getIamPolicy {"version":1,"etag":"BwZQNQ4fZ4Q=","bindings":[{"role":"roles/cloudbuild.builds.builder","members":["serviceAccount:616122640993@cloudbuild.gserviceaccount.com"]},{"role":"roles/cloudbuild.serviceAgent","members":["serviceAccount:service-616122640993@gcp-sa-cloudbuild.iam.gserviceaccount.com"]},{"role":"roles/containerregistry.ServiceAgent","members":["serviceAccount:service-616122640993@containerregistry.iam.gserviceaccount.com"]},{"role":"roles/editor","members":["serviceAccount:616122640993-compute@developer.gserviceaccount.com"]},{"role":"roles/firebase.managementServiceAgent","members":["serviceAccount:service-616122640993@gcp-sa-firebase.iam.gserviceaccount.com"]},{"role":"roles/firebase.sdkAdminServiceAgent","members":["serviceAccount:firebase-adminsdk-fbsvc@bharat-5bce5.iam.gserviceaccount.com"]},{"role":"roles/firebaseauth.admin","members":["serviceAccount:firebase-adminsdk-fbsvc@bharat-5bce5.iam.gserviceaccount.com"]},{"role":"roles/firebaserules.system","members":["serviceAccount:service-616122640993@firebase-rules.iam.gserviceaccount.com"]},{"role":"roles/firestore.serviceAgent","members":["serviceAccount:service-616122640993@gcp-sa-firestore.iam.gserviceaccount.com"]},{"role":"roles/iam.serviceAccountTokenCreator","members":["serviceAccount:firebase-adminsdk-fbsvc@bharat-5bce5.iam.gserviceaccount.com"]},{"role":"roles/owner","members":["user:kulendeka05@gmail.com"]},{"role":"roles/run.serviceAgent","members":["serviceAccount:service-616122640993@serverless-robot-prod.iam.gserviceaccount.com"]}]}
+[debug] [2026-04-24T13:51:23.216Z] Checked if tokens are valid: true, expires at: 1777042003709
+[debug] [2026-04-24T13:51:23.217Z] Checked if tokens are valid: true, expires at: 1777042003709
+[debug] [2026-04-24T13:51:23.217Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/bharat-5bce5:setIamPolicy [none]
+[debug] [2026-04-24T13:51:23.217Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/bharat-5bce5:setIamPolicy {"policy":{"version":1,"etag":"BwZQNQ4fZ4Q=","bindings":[{"role":"roles/cloudbuild.builds.builder","members":["serviceAccount:616122640993@cloudbuild.gserviceaccount.com"]},{"role":"roles/cloudbuild.serviceAgent","members":["serviceAccount:service-616122640993@gcp-sa-cloudbuild.iam.gserviceaccount.com"]},{"role":"roles/containerregistry.ServiceAgent","members":["serviceAccount:service-616122640993@containerregistry.iam.gserviceaccount.com"]},{"role":"roles/editor","members":["serviceAccount:616122640993-compute@developer.gserviceaccount.com"]},{"role":"roles/firebase.managementServiceAgent","members":["serviceAccount:service-616122640993@gcp-sa-firebase.iam.gserviceaccount.com"]},{"role":"roles/firebase.sdkAdminServiceAgent","members":["serviceAccount:firebase-adminsdk-fbsvc@bharat-5bce5.iam.gserviceaccount.com","serviceAccount:firebase-app-hosting-compute@bharat-5bce5.iam.gserviceaccount.com"]},{"role":"roles/firebaseauth.admin","members":["serviceAccount:firebase-adminsdk-fbsvc@bharat-5bce5.iam.gserviceaccount.com"]},{"role":"roles/firebaserules.system","members":["serviceAccount:service-616122640993@firebase-rules.iam.gserviceaccount.com"]},{"role":"roles/firestore.serviceAgent","members":["serviceAccount:service-616122640993@gcp-sa-firestore.iam.gserviceaccount.com"]},{"role":"roles/iam.serviceAccountTokenCreator","members":["serviceAccount:firebase-adminsdk-fbsvc@bharat-5bce5.iam.gserviceaccount.com"]},{"role":"roles/owner","members":["user:kulendeka05@gmail.com"]},{"role":"roles/run.serviceAgent","members":["serviceAccount:service-616122640993@serverless-robot-prod.iam.gserviceaccount.com"]},{"role":"roles/firebaseapphosting.computeRunner","members":["serviceAccount:firebase-app-hosting-compute@bharat-5bce5.iam.gserviceaccount.com"]},{"role":"roles/developerconnect.readTokenAccessor","members":["serviceAccount:firebase-app-hosting-compute@bharat-5bce5.iam.gserviceaccount.com"]},{"role":"roles/storage.objectViewer","members":["serviceAccount:firebase-app-hosting-compute@bharat-5bce5.iam.gserviceaccount.com"]}]},"updateMask":"bindings"}
+[debug] [2026-04-24T13:51:24.161Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/bharat-5bce5:setIamPolicy 400
+[debug] [2026-04-24T13:51:24.161Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/bharat-5bce5:setIamPolicy {"error":{"code":400,"message":"Service account firebase-app-hosting-compute@bharat-5bce5.iam.gserviceaccount.com does not exist.","status":"INVALID_ARGUMENT"}}
+[warn] !  Your App Hosting compute service account is still being provisioned in the background. If you encounter an error, please try again after a few moments. 
+[info] i  This command links your local project to Firebase App Hosting. You will be able to deploy your web app with `firebase deploy` after setup. 
+[debug] [2026-04-24T13:51:49.545Z] Checked if tokens are valid: true, expires at: 1777042003709
+[debug] [2026-04-24T13:51:49.663Z] Checked if tokens are valid: true, expires at: 1777042003709
+[debug] [2026-04-24T13:51:49.664Z] >>> [apiv2][query] GET https://firebaseapphosting.googleapis.com/v1beta/projects/bharat-5bce5/locations/-/backends 
+[debug] [2026-04-24T13:51:51.745Z] <<< [apiv2][status] GET https://firebaseapphosting.googleapis.com/v1beta/projects/bharat-5bce5/locations/-/backends 200
+[debug] [2026-04-24T13:51:51.745Z] <<< [apiv2][body] GET https://firebaseapphosting.googleapis.com/v1beta/projects/bharat-5bce5/locations/-/backends {}
+[debug] [2026-04-24T13:52:00.318Z] ExitPromptError: User force closed the prompt with SIGINT
+    at Interface.sigint (C:\Users\Lenovo\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\@inquirer\core\dist\commonjs\lib\create-prompt.js:101:37)
+    at Interface.emit (node:events:508:28)
+    at [_ttyWrite] [as _ttyWrite] (node:internal/readline/interface:1317:18)
+    at ReadStream.onkeypress (node:internal/readline/interface:284:20)
+    at ReadStream.emit (node:events:520:35)
+    at emitKeys (node:internal/readline/utils:371:14)
+    at emitKeys.next (<anonymous>)
+    at ReadStream.onData (node:internal/readline/emitKeypressEvents:64:36)
+    at ReadStream.emit (node:events:508:28)
+    at addChunk (node:internal/streams/readable:559:12)
+[error] 
+[error] Error: An unexpected error has occurred.

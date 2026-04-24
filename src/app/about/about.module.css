@@ -1,0 +1,336 @@
+.pageHero {
+  text-align: center;
+  color: #fff;
+  padding: 2rem 1.5rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.pageHero h1 {
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  color: #fff;
+  margin-bottom: 0.75rem;
+}
+
+.pageHero p {
+  font-size: 1.15rem;
+  opacity: 0.9;
+  margin-bottom: 1.5rem;
+}
+
+.breadcrumb {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.9rem;
+  padding: 0.5rem 1.25rem;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(8px);
+  border-radius: var(--radius-full);
+}
+
+.breadcrumb a {
+  color: #fff;
+  font-weight: 500;
+  transition: opacity var(--transition-fast);
+}
+
+.breadcrumb a:hover {
+  opacity: 0.8;
+}
+
+.breadcrumb span {
+  opacity: 0.6;
+}
+
+/* === Story Section === */
+.storyGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.storyImage {
+  position: relative;
+  border-radius: var(--radius-2xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-xl);
+}
+
+.storyImage::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-2xl);
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,0.1);
+  pointer-events: none;
+}
+
+[data-theme="dark"] .storyImage::after {
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.1);
+}
+
+.storyImg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.storyContent p {
+  color: var(--text-secondary);
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+  font-size: 1.05rem;
+}
+
+.storyContent .btn {
+  margin-top: 1rem;
+}
+
+/* === Qualifications === */
+.qualSection {
+  background: var(--bg-secondary);
+}
+
+.qualGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.qualCard {
+  text-align: center;
+  padding: 2.5rem 1.5rem;
+  height: 100%;
+}
+
+.qualAbbr {
+  font-family: var(--font-josefin);
+  font-size: 2.5rem;
+  font-weight: 700;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 1rem;
+}
+
+.qualFull {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+/* === Achievements Parallax === */
+.achievementsContent {
+  text-align: center;
+  color: #fff;
+  width: 100%;
+}
+
+.achievementsContent h2 {
+  color: #fff;
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  margin-bottom: 3rem;
+}
+
+.achievementsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.achievementItem i {
+  font-size: 3rem;
+  color: #fff;
+  opacity: 0.9;
+  margin-bottom: 1.25rem;
+  display: inline-block;
+}
+
+.achievementItem h4 {
+  color: #fff;
+  font-size: 1.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.achievementItem p {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* === Timeline === */
+.timeline {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 4px;
+  background: var(--gradient-primary);
+  transform: translateX(-50%);
+  border-radius: 2px;
+}
+
+.timelineItem {
+  position: relative;
+  margin-bottom: 3rem;
+  width: 100%;
+  display: flex;
+}
+
+.timelineItem:last-child {
+  margin-bottom: 0;
+}
+
+.timelineLeft {
+  justify-content: flex-start;
+  padding-right: 50%;
+}
+
+.timelineRight {
+  justify-content: flex-end;
+  padding-left: 50%;
+}
+
+.timelineDot {
+  position: absolute;
+  left: 50%;
+  top: 1.5rem;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  background: var(--primary-500);
+  border: 4px solid var(--bg-primary);
+  border-radius: 50%;
+  z-index: 2;
+  box-shadow: 0 0 0 4px rgba(20, 184, 166, 0.2);
+}
+
+.timelineCard {
+  width: calc(100% - 3rem);
+  position: relative;
+}
+
+.timelineLeft .timelineCard {
+  margin-right: 3rem;
+}
+
+.timelineRight .timelineCard {
+  margin-left: 3rem;
+}
+
+.timelineCard::after {
+  content: '';
+  position: absolute;
+  top: 1.5rem;
+  width: 0;
+  height: 0;
+  border: 10px solid transparent;
+}
+
+.timelineLeft .timelineCard::after {
+  right: -20px;
+  border-left-color: var(--bg-card);
+  transform: translateY(-50%);
+}
+
+.timelineRight .timelineCard::after {
+  left: -20px;
+  border-right-color: var(--bg-card);
+  transform: translateY(-50%);
+}
+
+.timelineYear {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  background: var(--primary-100);
+  color: var(--primary-700);
+  border-radius: var(--radius-full);
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+[data-theme="dark"] .timelineYear {
+  background: rgba(20, 184, 166, 0.15);
+  color: var(--primary-400);
+}
+
+.timelineCard h4 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.timelineCard p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+/* ===== Responsive === */
+@media (max-width: 1024px) {
+  .storyGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .storyImage {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .qualGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .achievementsGrid {
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .achievementsGrid {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+  }
+
+  /* Flatten Timeline */
+  .timeline::before {
+    left: 20px;
+  }
+
+  .timelineItem {
+    padding: 0 !important;
+    justify-content: flex-end;
+  }
+
+  .timelineDot {
+    left: 20px;
+  }
+
+  .timelineCard {
+    width: calc(100% - 50px);
+    margin: 0 0 0 50px !important;
+  }
+
+  .timelineCard::after {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .qualGrid {
+    grid-template-columns: 1fr;
+  }
+}

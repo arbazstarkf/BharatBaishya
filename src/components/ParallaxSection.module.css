@@ -1,0 +1,43 @@
+.wrapper {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bg {
+  position: absolute;
+  inset: -20%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  z-index: 0;
+}
+
+@supports (-webkit-touch-callout: none) {
+  .bg {
+    background-attachment: scroll;
+  }
+}
+
+@media (max-width: 768px) {
+  .bg {
+    background-attachment: scroll;
+    inset: -5%;
+  }
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  padding: 4rem 1.5rem;
+}

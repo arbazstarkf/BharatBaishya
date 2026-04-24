@@ -1,0 +1,23 @@
+kind: "AppHostingYaml"
+apiVersion: "v1alpha"
+
+# Configure build settings
+# build:
+#   rootDirectory: "."
+
+# Environment variables for the application
+env:
+  - variable: NEXT_PUBLIC_FIREBASE_API_KEY
+    value: "AIzaSyBeEgB2iOh1mMlntU2jGMdBLX7vRoA_f6w"
+  - variable: NEXT_PUBLIC_FIREBASE_APP_ID
+    value: "1:616122640993:web:d1baa899c2e58c8236d820"
+  - variable: NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN
+    value: "bharat-5bce5.firebaseapp.com"
+  - variable: NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID
+    value: "616122640993"
+  - variable: NEXT_PUBLIC_FIREBASE_PROJECT_ID
+    value: "bharat-5bce5"
+  - variable: NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET
+    value: "bharat-5bce5.firebasestorage.app"
+  - variable: NEXT_PUBLIC_GA_MEASUREMENT_ID
+    value: "G-ZLP3MXGNEL"
