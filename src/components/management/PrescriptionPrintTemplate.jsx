@@ -9,8 +9,20 @@ const PrescriptionPrintTemplate = ({ data, prescriptionId }) => {
   const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=${encodeURIComponent(verifyUrl)}&bgcolor=ffffff`;
 
   return (
-    <div className="prescription-print-root">
-      {/* Premium Header */}
+    <>
+      <style type="text/css">
+        {`
+          @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;500;600;700;800&display=swap');
+          .prescription-print-root {
+            font-family: 'Josefin Sans', sans-serif !important;
+          }
+          .prescription-print-root * {
+            font-family: inherit;
+          }
+        `}
+      </style>
+      <div className="prescription-print-root">
+        {/* Premium Header */}
       <header className="prescription-header-modern">
         <div className="header-flex-row">
           <div className="hospital-side">
@@ -118,6 +130,7 @@ const PrescriptionPrintTemplate = ({ data, prescriptionId }) => {
         </div>
       </footer >
     </div >
+    </>
   );
 };
 

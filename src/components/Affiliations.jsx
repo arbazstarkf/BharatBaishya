@@ -7,8 +7,9 @@ import styles from './Affiliations.module.css';
 const affiliations = [
   { name: 'Assam Medical Council', logo: '/images/assam medical council.png' },
   { name: 'Sparsh Hospital, Rangia', logo: '/images/sparsh hospital logo.jpg' },
-  { name: 'Association of Physicians of India, Assam Chapter', logo: '/images/Association of Physicians of India logo.png' },
+  { name: 'Association of Physicians of India', logo: '/images/Association of Physicians of India logo.png' },
   { name: 'Indian College of Physicians', logo: '/images/Indian College of Physicians.png' },
+  { name: 'American Association of Clinical Endocrinologists', logo: '/images/american association of clinical endo.png' },
 ];
 
 export default function Affiliations() {

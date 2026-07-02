@@ -1,4 +1,7 @@
 {
+  "firestore": {
+    "rules": "firestore.rules"
+  },
   "apphosting": {
     "appId": "1:616122640993:web:d1baa899c2e58c8236d820"
   }

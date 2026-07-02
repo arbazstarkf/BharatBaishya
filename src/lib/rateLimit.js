@@ -8,13 +8,17 @@
 
 const MAX_ATTEMPTS = 5;
 const LOCKOUT_MS = 15 * 60 * 1000; // 15 minutes
-const STORAGE_KEY = 'mgmt_login_rl';
+const STORAGE_PREFIX = 'mgmt_login_rl_';
 
-function getStore() {
-  if (typeof window === 'undefined') return { attempts: [], lockedUntil: null };
+function getStoreKey(email) {
+  return `${STORAGE_PREFIX}${email.toLowerCase()}`;
+}
+
+function getStore(email) {
+  if (typeof window === 'undefined' || !email) return { attempts: [], lockedUntil: null };
   try {
     return JSON.parse(
-      localStorage.getItem(STORAGE_KEY) ||
+      localStorage.getItem(getStoreKey(email)) ||
         '{"attempts":[],"lockedUntil":null}'
     );
   } catch {
@@ -22,18 +26,20 @@ function getStore() {
   }
 }
 
-function saveStore(data) {
-  if (typeof window === 'undefined') return;
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+function saveStore(email, data) {
+  if (typeof window === 'undefined' || !email) return;
+  localStorage.setItem(getStoreKey(email), JSON.stringify(data));
 }
 
 /**
  * Check whether the current user is rate-limited.
+ * @param {string} email
  * @returns {{ allowed: boolean, remainingSec?: number, attemptsLeft?: number }}
  */
-export function checkRateLimit() {
+export function checkRateLimit(email) {
+  if (!email) return { allowed: true, attemptsLeft: MAX_ATTEMPTS };
   const now = Date.now();
-  const data = getStore();
+  const data = getStore(email);
 
   // Active lockout?
   if (data.lockedUntil && now < data.lockedUntil) {
@@ -44,7 +50,7 @@ export function checkRateLimit() {
   // Prune attempts older than the lockout window & clear stale lockout
   data.attempts = (data.attempts || []).filter((t) => now - t < LOCKOUT_MS);
   data.lockedUntil = null;
-  saveStore(data);
+  saveStore(email, data);
 
   const attemptsLeft = MAX_ATTEMPTS - data.attempts.length;
   return { allowed: true, attemptsLeft };
@@ -52,11 +58,13 @@ export function checkRateLimit() {
 
 /**
  * Record a failed login attempt. Returns lock status.
+ * @param {string} email
  * @returns {{ locked: boolean, remainingSec: number | null, attemptsLeft: number }}
  */
-export function recordFailedAttempt() {
+export function recordFailedAttempt(email) {
+  if (!email) return { locked: false, remainingSec: null, attemptsLeft: MAX_ATTEMPTS };
   const now = Date.now();
-  const data = getStore();
+  const data = getStore(email);
 
   data.attempts = [
     ...(data.attempts || []).filter((t) => now - t < LOCKOUT_MS),
@@ -67,7 +75,7 @@ export function recordFailedAttempt() {
     data.lockedUntil = now + LOCKOUT_MS;
   }
 
-  saveStore(data);
+  saveStore(email, data);
 
   const locked = !!data.lockedUntil;
   const remainingSec = locked
@@ -80,9 +88,10 @@ export function recordFailedAttempt() {
 
 /**
  * Clear the rate-limit record on successful login.
+ * @param {string} email
  */
-export function clearRateLimit() {
-  if (typeof window !== 'undefined') localStorage.removeItem(STORAGE_KEY);
+export function clearRateLimit(email) {
+  if (typeof window !== 'undefined' && email) localStorage.removeItem(getStoreKey(email));
 }
 
 /**

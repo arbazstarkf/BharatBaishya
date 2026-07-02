@@ -297,7 +297,7 @@ export default function HomeClient() {
                 mapSrc: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3572.4981162528816!2d91.60955066048612!3d26.439668080164232!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x375bb3655f99f8c9%3A0x9535f9f64f54b51e!2sSparsh%20Hospital%2CRangia!5e0!3m2!1sen!2sus!4v1776352032591!5m2!1sen!2sus',
               },
               {
-                name: 'Residency',
+                name: 'Residency (Miranjali)',
                 address: 'Ward No 3, Opposite New Highway Chef Dhaba, Rangia, Kamrup, Assam',
                 hours: 'Mon–Sat: 6:00 PM – 8:00 PM',
                 icon: 'fa-house-medical',

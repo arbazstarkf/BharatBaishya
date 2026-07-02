@@ -13,6 +13,8 @@ const quickLinks = [
   { href: '/contact', label: 'Contact' },
   { href: '/appointment', label: 'Book Appointment' },
   { href: '/whatsapp-policy', label: 'Communication Policy' },
+  { href: '/privacy-policy', label: 'Privacy Policy' },
+  { href: '/disclaimer', label: 'Disclaimer' },
 ];
 
 const services = [
@@ -94,7 +96,7 @@ export default function Footer() {
           {/* Column 2: Quick Links */}
           <div className={styles.col}>
             <h4 className={styles.colTitle}>Quick Links</h4>
-            <ul className={styles.linkList}>
+            <ul className={styles.linkListTwoCols}>
               {quickLinks.map((link) => (
                 <li key={link.href}>
                   <Link href={link.href} className={styles.footerLink}>

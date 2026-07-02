@@ -10,7 +10,7 @@ export const metadata = {
 export default function PrescriptionsPage() {
   return (
     <ManagementThemeProvider>
-      <ManagementShell pageTitle="Prescription Generator" pageLabel="Clinical Tool">
+      <ManagementShell pageTitle="Create Prescription" pageLabel="Clinical Tool">
 
 
         <PrescriptionForm />

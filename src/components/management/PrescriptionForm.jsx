@@ -4,8 +4,11 @@ import { useState } from 'react';
 import { collection, addDoc, serverTimestamp, query, where, getDocs, orderBy, limit } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
 import PrescriptionPrintTemplate from './PrescriptionPrintTemplate';
+import { logAuditAction } from '@/lib/auditLogger';
+import { useManagementAuth } from '@/components/management/AuthGuard';
 
 export default function PrescriptionForm() {
+  const { user } = useManagementAuth();
   const [formData, setFormData] = useState({
     name: '',
     address: '',
@@ -37,6 +40,18 @@ export default function PrescriptionForm() {
         createdAt: serverTimestamp(),
       });
       setLastSavedId(docRef.id);
+      
+      // Write to audit log
+      await logAuditAction({
+        uid: user?.uid,
+        role: user?.role,
+        email: user?.email,
+        action: 'CREATE',
+        resource: 'PRESCRIPTION',
+        resourceId: docRef.id,
+        details: { patientName: formData.name }
+      });
+
       setTimeout(() => {
         window.print();
         setIsSaving(false);
@@ -133,7 +148,7 @@ export default function PrescriptionForm() {
           <div className="mgmt-modal-card" onClick={e => e.stopPropagation()}>
             <div className="mgmt-modal-header">
               <div>
-                <h3 className="mgmt-modal-title">Family Records Found</h3>
+                <h3 className="mgmt-modal-title">Old Prescription Records Found</h3>
                 <p className="mgmt-modal-subtitle">Multiple patients share this phone number. Please select one:</p>
               </div>
               <button className="mgmt-modal-close-icon" onClick={() => setFoundPatients([])}>&times;</button>

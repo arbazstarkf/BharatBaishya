@@ -10,14 +10,22 @@ export const metadata = {
 };
 
 const galleryImages = [
-  { src: '/images/clinic-interior.png', alt: 'Sparsh Hospital Interior', width: 800, height: 600 },
-  { src: '/images/doctor-portrait.png', alt: 'Dr. Bharat Baishya Consulting', width: 600, height: 800 },
-  { src: '/images/clinic-interior.png', alt: 'Residence Clinic', width: 800, height: 500 },
-  { src: '/images/doctor-portrait.png', alt: 'Medical Camp in Assam', width: 800, height: 800 },
-  { src: '/images/clinic-interior.png', alt: 'Modern Medical Equipment', width: 600, height: 400 },
-  { src: '/images/doctor-portrait.png', alt: 'Dr. Baishya at a Medical Conference', width: 800, height: 600 },
-  { src: '/images/clinic-interior.png', alt: 'Waiting Area at Sparsh Hospital', width: 900, height: 600 },
-  { src: '/images/doctor-portrait.png', alt: 'Patient Consultation', width: 600, height: 600 },
+  { src: '/images/img (1).JPG', alt: 'Gallery Image', width: 800, height: 600 },
+  { src: '/images/img (2).JPG', alt: 'Gallery Image', width: 800, height: 600 },
+  { src: '/images/img (3).JPG', alt: 'Gallery Image', width: 800, height: 600 },
+  { src: '/images/img (4).JPG', alt: 'Gallery Image', width: 800, height: 600 },
+  { src: '/images/img (5).JPG', alt: 'Gallery Image', width: 800, height: 600 },
+  { src: '/images/img (6).JPG', alt: 'Gallery Image', width: 800, height: 600 },
+  { src: '/images/img (7).JPG', alt: 'Gallery Image', width: 800, height: 600 },
+  { src: '/images/img (8).JPG', alt: 'Gallery Image', width: 800, height: 600 },
+  { src: '/images/img (9).JPG', alt: 'Gallery Image', width: 800, height: 600 },
+  { src: '/images/img (10).JPG', alt: 'Gallery Image', width: 800, height: 600 },
+  { src: '/images/img (11).JPG', alt: 'Gallery Image', width: 800, height: 600 },
+  { src: '/images/bb1.jpg', alt: 'Gallery Image', width: 800, height: 600 },
+  { src: '/images/bb2.jpg', alt: 'Gallery Image', width: 800, height: 600 },
+  { src: '/images/bb4.jpg', alt: 'Gallery Image', width: 800, height: 600 },
+  { src: '/images/bb5.jpg', alt: 'Gallery Image', width: 800, height: 600 },
+  { src: '/images/bb6.jpg', alt: 'Gallery Image', width: 800, height: 600 },
 ];
 
 export default function GalleryPage() {

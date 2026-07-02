@@ -49,24 +49,14 @@ export default function LoginClient() {
     return () => unsubscribe();
   }, [router]);
 
-  // Check rate limit on mount
-  useEffect(() => {
-    const rl = checkRateLimit();
-    setRateLimitInfo(rl);
-    if (!rl.allowed) {
-      startCountdown(rl.remainingSec);
-    }
-    return () => clearInterval(timerRef.current);
-  }, []);
-
-  const startCountdown = useCallback((initialSec) => {
+  const startCountdown = useCallback((initialSec, targetEmail) => {
     setCountdown(initialSec);
     clearInterval(timerRef.current);
     timerRef.current = setInterval(() => {
       setCountdown((prev) => {
         if (prev <= 1) {
           clearInterval(timerRef.current);
-          const rl = checkRateLimit();
+          const rl = checkRateLimit(targetEmail);
           setRateLimitInfo(rl);
           return 0;
         }
@@ -74,6 +64,25 @@ export default function LoginClient() {
       });
     }, 1000);
   }, []);
+
+  // Check rate limit when email changes
+  useEffect(() => {
+    const currentEmail = email.trim();
+    if (!currentEmail) {
+      setRateLimitInfo({ allowed: true, attemptsLeft: MAX_ATTEMPTS });
+      setCountdown(0);
+      clearInterval(timerRef.current);
+      return;
+    }
+    const rl = checkRateLimit(currentEmail);
+    setRateLimitInfo(rl);
+    if (!rl.allowed) {
+      startCountdown(rl.remainingSec, currentEmail);
+    } else {
+      setCountdown(0);
+      clearInterval(timerRef.current);
+    }
+  }, [email, startCountdown]);
 
   const getFirebaseErrorMessage = (code) => {
     switch (code) {
@@ -90,29 +99,30 @@ export default function LoginClient() {
     e.preventDefault();
     setError('');
 
-    const rl = checkRateLimit();
+    const currentEmail = email.trim();
+    const rl = checkRateLimit(currentEmail);
     if (!rl.allowed) {
       setRateLimitInfo(rl);
-      startCountdown(rl.remainingSec);
+      startCountdown(rl.remainingSec, currentEmail);
       return;
     }
 
-    if (!email.trim() || !password) {
+    if (!currentEmail || !password) {
       setError('Please enter your email and password.');
       return;
     }
 
     setLoading(true);
     try {
-      await signInAdmin(email.trim(), password);
-      clearRateLimit();
+      await signInAdmin(currentEmail, password);
+      clearRateLimit(currentEmail);
       router.replace('/management');
     } catch (err) {
-      const result = recordFailedAttempt();
-      setRateLimitInfo(checkRateLimit());
+      const result = recordFailedAttempt(currentEmail);
+      setRateLimitInfo(checkRateLimit(currentEmail));
 
       if (result.locked) {
-        startCountdown(result.remainingSec);
+        startCountdown(result.remainingSec, currentEmail);
         setError(`Too many failed attempts. Locked for ${formatLockoutTime(result.remainingSec)}.`);
       } else {
         const msg = getFirebaseErrorMessage(err.code);
@@ -180,7 +190,7 @@ export default function LoginClient() {
                 placeholder="admin@example.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                disabled={loading || isLocked}
+                disabled={loading}
                 required
               />
             </div>

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useTheme } from './ThemeProvider';
 import styles from './Navbar.module.css';
@@ -47,7 +48,7 @@ export default function Navbar() {
         <div className={`container ${styles.inner}`}>
           {/* Logo */}
           <Link href="/" className={styles.logo} aria-label="Home">
-            <img src="/images/logo.png" alt="Dr. Bharat Baishya Logo" className={styles.logoImage} />
+            <Image src="/images/logo.png" alt="Dr. Bharat Baishya Logo" width={180} height={40} className={styles.logoImage} style={{ width: 'auto', height: 'auto', maxHeight: '40px' }} priority />
             <div className={styles.logoText}>
               <span className={styles.logoName}>Dr. Bharat Baishya</span>
             </div>

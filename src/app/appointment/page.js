@@ -73,9 +73,14 @@ export default function AppointmentPage() {
                 <div className={styles.emergencyNote}>
                   <h4><i className="fa-solid fa-truck-medical"></i> Emergency?</h4>
                   <p>In case of a medical emergency, do not wait for an online appointment confirmation. Call directly or visit the nearest hospital.</p>
-                  <a href="tel:+919854004813" className="btn btn-secondary" style={{marginTop: '1rem', width: '100%'}}>
-                    <i className="fa-solid fa-phone"></i> +91 9854004813
-                  </a>
+                  <div style={{ marginTop: '1rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                    <a href="tel:+919854004813" className="btn btn-secondary" style={{ width: '100%' }}>
+                      <i className="fa-solid fa-phone"></i> +91 9854004813
+                    </a>
+                    <p style={{ fontSize: '0.8rem', textAlign: 'center', margin: 0, color: 'var(--text-secondary)', lineHeight: '1.4' }}>
+                      Please read our <Link href="/whatsapp-policy" style={{ color: 'var(--primary-color)', textDecoration: 'underline' }}>Communication Policy</Link> before calling or messaging for non-emergencies.
+                    </p>
+                  </div>
                 </div>
               </div>
             </ScrollRevealClient>

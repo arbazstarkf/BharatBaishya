@@ -1,0 +1,167 @@
+.wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.icon {
+  font-size: 3rem;
+  color: var(--secondary-500);
+  margin-bottom: 1rem;
+}
+
+.subtitle {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  margin-top: 0.5rem;
+}
+
+.card {
+  background: var(--bg-card);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-xl);
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  transition: background-color var(--transition-base), border-color var(--transition-base);
+}
+
+.cardBody {
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.introText {
+  font-size: 1.1rem;
+  color: var(--text-primary);
+  line-height: 1.6;
+  font-weight: 500;
+  margin: 0;
+}
+
+.policySection {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 1rem;
+}
+
+.sectionHeader h2 {
+  font-size: 1.35rem;
+  margin: 0;
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+.pointNumber {
+  background: var(--primary-100);
+  color: var(--primary-700);
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+[data-theme="dark"] .pointNumber {
+  background: var(--primary-900);
+  color: var(--primary-300);
+}
+
+.policySection p {
+  margin: 0;
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.policySection ul {
+  margin: 0;
+  padding-left: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.policySection li {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.policySection li strong {
+  color: var(--text-primary);
+}
+
+.contactNote {
+  margin-top: 2rem;
+  padding: 2rem;
+  background: var(--bg-secondary);
+  border-radius: var(--radius-xl);
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+  border: 1px solid var(--border-color);
+}
+
+.contactIcon {
+  font-size: 1.8rem;
+  color: var(--secondary-500);
+  margin-top: 0.2rem;
+}
+
+.contactContent h3 {
+  margin: 0 0 1rem 0;
+  font-size: 1.35rem;
+  color: var(--text-primary);
+}
+
+.contactContent p {
+  margin: 0 0 0.75rem 0;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.contactContent p:last-child {
+  margin-bottom: 0;
+}
+
+.contactContent strong {
+  color: var(--text-primary);
+}
+
+.contactContent a {
+  color: var(--primary-600);
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .cardBody {
+    padding: 2rem 1.5rem;
+  }
+  
+  .contactNote {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1.5rem;
+  }
+}

@@ -10,7 +10,7 @@ export const metadata = {
 export default function PrescriptionHistoryPage() {
   return (
     <ManagementThemeProvider>
-      <ManagementShell pageTitle="Prescription Archive" pageLabel="Clinical Records">
+      <ManagementShell pageTitle="Prescription Archive" pageLabel="Clinical Records" allowedRoles={['admin']}>
         <PrescriptionHistoryClient />
       </ManagementShell>
     </ManagementThemeProvider>

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useCallback, useEffect, useRef } from 'react';
+import Link from 'next/link';
 import flatpickr from 'flatpickr';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
@@ -33,6 +34,7 @@ const initialForm = {
   time: '',
   location: '',
   reason: '',
+  consent: false,
 };
 
 export default function AppointmentForm({ compact = false }) {
@@ -80,8 +82,8 @@ export default function AppointmentForm({ compact = false }) {
   }, []);
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setForm((prev) => ({ ...prev, [name]: value }));
+    const { name, value, type, checked } = e.target;
+    setForm((prev) => ({ ...prev, [name]: type === 'checkbox' ? checked : value }));
     if (errors[name]) {
       setErrors((prev) => ({ ...prev, [name]: '' }));
     }
@@ -97,6 +99,7 @@ export default function AppointmentForm({ compact = false }) {
       errs.email = 'Enter a valid email';
     if (!form.date) errs.date = 'Please select a date';
     if (!form.location) errs.location = 'Please select a location';
+    if (!form.consent) errs.consent = 'You must agree to the Privacy Policy to proceed';
     if (!captchaVerified) errs.captcha = 'Please complete the verification';
     return errs;
   };
@@ -286,6 +289,22 @@ export default function AppointmentForm({ compact = false }) {
         />
       </div>
 
+      {/* Consent Checkbox */}
+      <div className="form-group" style={{ flexDirection: 'row', alignItems: 'flex-start', gap: '0.75rem', display: 'flex', marginTop: '1rem', marginBottom: '1rem' }}>
+        <input
+          id="apt-consent"
+          type="checkbox"
+          name="consent"
+          checked={form.consent}
+          onChange={handleChange}
+          style={{ marginTop: '0.25rem', width: '1.25rem', height: '1.25rem', accentColor: 'var(--primary-color)' }}
+        />
+        <label htmlFor="apt-consent" style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', lineHeight: '1.4' }}>
+          I agree to the <a href="/privacy-policy" target="_blank" style={{ color: 'var(--primary-color)', textDecoration: 'underline' }}>Privacy Policy</a> and consent to the collection and processing of my personal and health data for appointment booking. <span className={styles.required}>*</span>
+        </label>
+      </div>
+      {errors.consent && <p className="form-error" style={{ marginTop: '-0.75rem', marginBottom: '1rem' }}>{errors.consent}</p>}
+
       {/* Captcha */}
       <MathCaptcha onVerified={onCaptchaVerified} />
       {errors.captcha && <p className="form-error" style={{ marginTop: '-0.75rem', marginBottom: '1rem' }}>{errors.captcha}</p>}
@@ -314,7 +333,9 @@ export default function AppointmentForm({ compact = false }) {
 
       <p className={styles.note}>
         <i className="fa-solid fa-info-circle"></i>
-        We&apos;ll confirm your appointment via phone call. (Terms & Conditions Apply*)
+        <span>
+          We&apos;ll confirm your appointment via phone call. Please go through our <Link href="/disclaimer" style={{ color: 'var(--primary-color)', textDecoration: 'underline' }}>Disclaimer</Link> for more information.
+        </span>
       </p>
     </form>
   );

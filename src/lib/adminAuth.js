@@ -3,7 +3,27 @@ import {
   signOut as firebaseSignOut,
   onAuthStateChanged,
 } from 'firebase/auth';
-import { auth } from './firebase';
+import { doc, getDoc } from 'firebase/firestore';
+import { auth, db } from './firebase';
+
+/**
+ * Fetch the role of a user from the Firestore 'users' collection.
+ * @param {string} uid The user's Firebase Auth UID.
+ * @returns {Promise<string|null>} The role (e.g., 'admin', 'receptionist') or null if not found.
+ */
+export async function getUserRole(uid) {
+  try {
+    const userDocRef = doc(db, 'users', uid);
+    const userDoc = await getDoc(userDocRef);
+    if (userDoc.exists()) {
+      return userDoc.data().role || null;
+    }
+    return null;
+  } catch (error) {
+    console.error("Error fetching user role:", error);
+    return null;
+  }
+}
 
 /**
  * Sign in the admin with email and password.

@@ -38,8 +38,7 @@ export default function ContactPage() {
                 </div>
                 <h2 className="section-title">Always Here To Help You</h2>
                 <p style={{ marginBottom: '2rem', color: 'var(--text-secondary)' }}>
-                  For appointments, general inquiries, or medical emergencies, please reach out via phone.
-                  You can also visit clinics during consultation hours.
+                  For appointments and general inquiries please reach out via phone or WhatsApp. 
                 </p>
 
                 <div className={styles.infoCards}>
@@ -48,6 +47,9 @@ export default function ContactPage() {
                     <div>
                       <h4>Call (Appointments)</h4>
                       <p><a href="tel:+919854004813">+91 9854004813</a></p>
+                      <Link href="/whatsapp-policy" className={styles.policyLink}>
+                        Read Communication Policy
+                      </Link>
                     </div>
                   </div>
 
@@ -69,6 +71,14 @@ export default function ContactPage() {
                     <div>
                       <h4>Email Address</h4>
                       <p><a href="mailto:drbharatbaishya@gmail.com">drbharatbaishya@gmail.com</a></p>
+                    </div>
+                  </div>
+
+                  <div className={`card ${styles.infoCard}`}>
+                    <div className={styles.infoIcon}><i className="fa-solid fa-user-shield"></i></div>
+                    <div>
+                      <h4>Technical & Grievances</h4>
+                      <p><a href="mailto:arbaztkhan@outlook.com">arbaztkhan@outlook.com</a></p>
                     </div>
                   </div>
                 </div>

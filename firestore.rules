@@ -1,19 +1,152 @@
 rules_version = '2';
-
 service cloud.firestore {
   match /databases/{database}/documents {
+    // -------------------------------------------------------------------------
+    // Helper Functions for Role-Based Access Control
+    // -------------------------------------------------------------------------
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    // Safely check if the user doc exists before getting its data to prevent errors
+    function getUserData() {
+      return request.auth != null && exists(/databases/$(database)/documents/users/$(request.auth.uid))
+        ? get(/databases/$(database)/documents/users/$(request.auth.uid)).data
+        : null;
+    }
+    
+    function isAdmin() {
+      let data = getUserData();
+      return isAuthenticated() && data != null && data.role == 'admin';
+    }
+    
+    function isReceptionist() {
+      let data = getUserData();
+      return isAuthenticated() && data != null && data.role == 'receptionist';
+    }
+    
+    function isStaff() {
+      return isAdmin() || isReceptionist();
+    }
 
-    // This rule allows anyone with your Firestore database reference to view, edit,
-    // and delete all data in your Firestore database. It is useful for getting
-    // started, but it is configured to expire after 30 days because it
-    // leaves your app open to attackers. At that time, all client
-    // requests to your Firestore database will be denied.
-    //
-    // Make sure to write security rules for your app before that time, or else
-    // all client requests to your Firestore database will be denied until you Update
-    // your rules
-    match /{document=**} {
-      allow read, write: if request.time < timestamp.date(2026, 5, 19);
+    // -------------------------------------------------------------------------
+    // Helper Functions for Data Validation
+    // -------------------------------------------------------------------------
+    // Checks that a string field exists and is a string (and optionally not empty)
+    function isString(field) {
+      return field in request.resource.data && request.resource.data[field] is string;
+    }
+    
+    function isNonEmptyString(field) {
+      return isString(field) && request.resource.data[field].size() > 0;
+    }
+
+    // Checks that a boolean field exists and is a boolean
+    function isBoolean(field) {
+      return field in request.resource.data && request.resource.data[field] is bool;
+    }
+
+    function isServerTimestamp(field) {
+      return field in request.resource.data && request.resource.data[field] == request.time;
+    }
+
+    // -------------------------------------------------------------------------
+    // 1. Users Collection
+    // -------------------------------------------------------------------------
+    match /users/{userId} {
+      // Users can read their own profile (to get their role upon login)
+      allow read: if isAuthenticated() && request.auth.uid == userId;
+      // Admins have full access to manage users
+      allow read, write: if isAdmin();
+    }
+
+    // -------------------------------------------------------------------------
+    // 2. Appointments Collection
+    // -------------------------------------------------------------------------
+    match /appointments/{appointmentId} {
+      // Anyone can submit an appointment request, but data must be strictly valid
+      allow create: if request.resource.data.keys().hasOnly(['name', 'phone', 'date', 'location', 'consent', 'status', 'createdAt'])
+                    && isNonEmptyString('name')
+                    && isNonEmptyString('phone')
+                    && isNonEmptyString('date')
+                    && isNonEmptyString('location')
+                    && isBoolean('consent')
+                    && request.resource.data.consent == true
+                    && isString('status')
+                    && request.resource.data.status == 'pending'
+                    && isServerTimestamp('createdAt');
+
+      // Only staff can view, update, and manage appointments
+      allow read, update, delete: if isStaff();
+    }
+
+    // -------------------------------------------------------------------------
+    // 3. Prescriptions Collection
+    // -------------------------------------------------------------------------
+    match /prescriptions/{prescriptionId} {
+      // Anyone can view a specific prescription if they have the exact ID (QR Verification)
+      // They cannot list all prescriptions.
+      allow get: if true;
+
+      // Only staff can list/query all prescriptions or create new ones
+      allow list: if isStaff();
+      
+      allow create: if isStaff()
+                    && request.resource.data.keys().hasOnly(['name', 'date', 'createdAt'])
+                    && isNonEmptyString('name')
+                    && isNonEmptyString('date')
+                    && isServerTimestamp('createdAt');
+                    
+      // Prevent updating immutable fields during updates
+      allow update: if isStaff()
+                    && (!('createdAt' in request.resource.data) || request.resource.data.createdAt == resource.data.createdAt)
+                    && (!('name' in request.resource.data) || request.resource.data.name == resource.data.name)
+                    && (!('date' in request.resource.data) || request.resource.data.date == resource.data.date);
+
+      // Only admins can delete prescriptions
+      allow delete: if isAdmin();
+    }
+
+    // -------------------------------------------------------------------------
+    // 4. Audit Logs Collection
+    // -------------------------------------------------------------------------
+    match /audit_logs/{logId} {
+      // Staff actions create audit logs. Must be strictly structured.
+      allow create: if isStaff()
+                    && request.resource.data.keys().hasOnly(['action', 'resource', 'timestamp', 'uid'])
+                    && isNonEmptyString('action')
+                    && isNonEmptyString('resource')
+                    && isServerTimestamp('timestamp')
+                    && isNonEmptyString('uid')
+                    && request.resource.data.uid == request.auth.uid;
+
+      // Only admins can view audit logs
+      allow read: if isAdmin();
+
+      // Audit logs are append-only; nobody can modify or delete them
+      allow update, delete: if false;
+    }
+
+    // -------------------------------------------------------------------------
+    // 5. Clinical Notes Collection
+    // -------------------------------------------------------------------------
+    match /clinical_notes/{noteId} {
+      allow read: if isStaff();
+      
+      allow create: if isStaff()
+                    && request.resource.data.keys().hasOnly(['patientName', 'note', 'date', 'createdAt'])
+                    && isNonEmptyString('patientName')
+                    && isNonEmptyString('note')
+                    && isNonEmptyString('date')
+                    && isServerTimestamp('createdAt');
+                    
+      // Prevent updating immutable fields during updates
+      allow update: if isStaff()
+                    && (!('createdAt' in request.resource.data) || request.resource.data.createdAt == resource.data.createdAt)
+                    && (!('patientName' in request.resource.data) || request.resource.data.patientName == resource.data.patientName);
+
+      // Only admins can delete clinical notes
+      allow delete: if isAdmin();
     }
   }
 }

@@ -24,6 +24,7 @@ export default function GalleryClient({ images }) {
                 width={img.width}
                 height={img.height}
                 className={styles.image}
+                style={{ width: '100%', height: 'auto' }}
               />
               <div className={styles.imageOverlay}>
                 <i className="fa-solid fa-magnifying-glass-plus"></i>
@@ -46,6 +47,7 @@ export default function GalleryClient({ images }) {
               width={lightboxImg.width}
               height={lightboxImg.height}
               className={styles.lightboxContent}
+              style={{ width: '100%', height: 'auto' }}
             />
             <p className={styles.lightboxCaption}>{lightboxImg.alt}</p>
           </div>

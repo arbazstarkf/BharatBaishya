@@ -4,6 +4,8 @@ import { useState, useEffect, useRef } from 'react';
 import { doc, updateDoc, serverTimestamp } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
 import StatusBadge from './StatusBadge';
+import { logAuditAction } from '@/lib/auditLogger';
+import { useManagementAuth } from '@/components/management/AuthGuard';
 
 const STATUS_OPTIONS = ['pending', 'confirmed', 'completed', 'cancelled'];
 
@@ -17,6 +19,7 @@ const STATUS_OPTIONS = ['pending', 'confirmed', 'completed', 'cancelled'];
  * }} props
  */
 export default function AppointmentDetailModal({ appointment, onClose, onToast }) {
+  const { user } = useManagementAuth();
   const [selectedStatus, setSelectedStatus] = useState('');
   const [saving, setSaving] = useState(false);
   const [closing, setClosing] = useState(false);
@@ -58,6 +61,18 @@ export default function AppointmentDetailModal({ appointment, onClose, onToast }
         status: selectedStatus,
         updatedAt: serverTimestamp(),
       });
+      
+      // Write to audit log
+      await logAuditAction({
+        uid: user?.uid,
+        role: user?.role,
+        email: user?.email,
+        action: 'UPDATE_STATUS',
+        resource: 'APPOINTMENT',
+        resourceId: appointment.id,
+        details: { oldStatus: appointment.status || 'pending', newStatus: selectedStatus }
+      });
+
       onToast(`Status updated to ${selectedStatus}`, 'success');
       handleClose();
     } catch (err) {
@@ -244,6 +259,7 @@ export default function AppointmentDetailModal({ appointment, onClose, onToast }
           <button className="mgmt-btn mgmt-btn--secondary" onClick={handleClose} disabled={saving}>
             Cancel
           </button>
+          
           <button
             className="mgmt-btn mgmt-btn--primary"
             onClick={handleStatusSave}

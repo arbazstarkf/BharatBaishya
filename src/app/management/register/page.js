@@ -10,7 +10,7 @@ export const metadata = {
 export default function PatientRegisterPage() {
   return (
     <ManagementThemeProvider>
-      <ManagementShell pageTitle="Patient Register" pageLabel="Daily Ledger">
+      <ManagementShell pageTitle="Patient Register" pageLabel="Daily Ledger" allowedRoles={['admin']}>
         <PatientRegisterClient />
       </ManagementShell>
     </ManagementThemeProvider>

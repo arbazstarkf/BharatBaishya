@@ -6,8 +6,11 @@ import { db } from '@/lib/firebase';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import PrescriptionPrintTemplate from './PrescriptionPrintTemplate';
+import { useManagementAuth } from '@/components/management/AuthGuard';
+import { logAuditAction } from '@/lib/auditLogger';
 
 export default function PatientRegisterClient() {
+  const { user } = useManagementAuth();
   const [records, setRecords] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
@@ -166,8 +169,32 @@ export default function PatientRegisterClient() {
         isEdited: true,
         lastEditedAt: serverTimestamp()
       };
+
+      // Calculate what actually changed
+      const changes = {};
+      ['name', 'age', 'sex', 'weight', 'phone', 'guardianName', 'address', 'clinicalNote'].forEach(key => {
+        const oldVal = selectedRecord[key] || '';
+        const newVal = updateData[key] || '';
+        if (oldVal !== newVal) {
+          changes[key] = { from: oldVal, to: newVal };
+        }
+      });
+
       await updateDoc(docRef, updateData);
       
+      // Write to audit log only if something changed
+      if (Object.keys(changes).length > 0) {
+        await logAuditAction({
+          uid: user?.uid,
+          role: user?.role,
+          email: user?.email,
+          action: 'UPDATE_PATIENT_RECORD',
+          resource: 'PRESCRIPTION',
+          resourceId: selectedRecord.id,
+          details: { changes }
+        });
+      }
+
       // Update local state if needed (onSnapshot should catch it, but for immediate feedback)
       setSelectedRecord({ ...selectedRecord, ...updateData });
       setIsEditing(false);

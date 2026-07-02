@@ -3,6 +3,7 @@ import { GoogleAnalytics } from '@next/third-parties/google';
 import './globals.css';
 import ThemeProvider from '@/components/ThemeProvider';
 import ConditionalLayout from '@/components/ConditionalLayout';
+import CookieBanner from '@/components/CookieBanner';
 
 const josefin = Josefin_Sans({
   subsets: ['latin'],
@@ -27,6 +28,10 @@ const inter = Inter({
 
 export const metadata = {
   metadataBase: new URL('https://drbharatassam.com'),
+  robots: {
+    index: false,
+    follow: false,
+  },
   title: {
     default: 'Dr. Bharat Baishya | Consultant Physician & Diabetes Specialist | Assam',
     template: '%s | Dr. Bharat Baishya',
@@ -167,6 +172,7 @@ export default function RootLayout({ children }) {
           <ConditionalLayout>{children}</ConditionalLayout>
         </ThemeProvider>
         <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || 'G-XXXXXXXXXX'} />
+        <CookieBanner />
       </body>
     </html>
   );

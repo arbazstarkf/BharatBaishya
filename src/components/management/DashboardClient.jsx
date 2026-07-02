@@ -4,6 +4,8 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import Link from 'next/link';
 import { collection, onSnapshot, query, orderBy } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
+import jsPDF from 'jspdf';
+import autoTable from 'jspdf-autotable';
 import StatsCards from './StatsCards';
 import FilterBar from './FilterBar';
 import AppointmentsTable from './AppointmentsTable';
@@ -57,7 +59,7 @@ function computeStats(appointments, prescriptions = []) {
 
   prescriptions.forEach(rx => {
     const createdDate = rx.createdAt?.toDate ? rx.createdAt.toDate() : new Date(rx.createdAt);
-    
+
     if (createdDate >= startOfToday) {
       patientsToday++;
     }
@@ -139,6 +141,66 @@ export default function DashboardClient() {
     };
   }, []);
 
+  const handleExport30DaysPDF = () => {
+    const thirtyDaysAgo = new Date();
+    thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+    
+    const recentRecords = prescriptions.filter(rx => {
+      if (!rx.createdAt) return false;
+      const rd = rx.createdAt?.toDate ? rx.createdAt.toDate() : new Date(rx.createdAt);
+      return rd >= thirtyDaysAgo;
+    });
+
+    if (recentRecords.length === 0) {
+      alert("No records found in the last 30 days.");
+      return;
+    }
+    
+    const doc = new jsPDF();
+    doc.setFontSize(20);
+    doc.setTextColor(20, 184, 166);
+    doc.text("Dr. Bharat Baishya", 105, 15, { align: 'center' });
+    
+    doc.setFontSize(12);
+    doc.setTextColor(100);
+    doc.text("Patient Register Ledger (Last 30 Days)", 105, 22, { align: 'center' });
+    
+    doc.setFontSize(10);
+    doc.text(`Generated on: ${new Date().toLocaleString()}`, 105, 28, { align: 'center' });
+    
+    const formatTime = (createdAt) => {
+      if (!createdAt) return '--:--';
+      const date = createdAt.toDate ? createdAt.toDate() : new Date(createdAt);
+      return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true });
+    };
+
+    const tableData = recentRecords.map(r => [
+      r.id.slice(0, 8).toUpperCase(),
+      r.name + (r.isEdited ? ' (Edited)' : ''),
+      r.phone || 'N/A',
+      r.date,
+      formatTime(r.createdAt)
+    ]);
+
+    autoTable(doc, {
+      startY: 35,
+      head: [['ID', 'Patient Name', 'Phone', 'Date', 'Time']],
+      body: tableData,
+      theme: 'striped',
+      headStyles: { fillColor: [20, 184, 166] },
+      styles: { fontSize: 9 },
+      columnStyles: {
+        0: { cellWidth: 30 },
+        1: { cellWidth: 50 },
+        2: { cellWidth: 40 },
+        3: { cellWidth: 35 },
+        4: { cellWidth: 35 }
+      }
+    });
+
+    doc.save(`patient-register-30days-${new Date().toISOString().split('T')[0]}.pdf`);
+  };
+
   const stats = computeStats(appointments, prescriptions);
   const recentAppointments = appointments.slice(0, 5);
 
@@ -191,8 +253,8 @@ export default function DashboardClient() {
                 <i className="fa-solid fa-file-prescription"></i>
               </div>
               <div className="mgmt-action-info-v2">
-                <h3>New Prescription</h3>
-                <p>Start a digital session</p>
+                <h3>Issue Prescription</h3>
+                <p>Draft and generate clinical prescriptions</p>
               </div>
               <i className="fa-solid fa-plus mgmt-action-plus"></i>
             </Link>
@@ -202,8 +264,8 @@ export default function DashboardClient() {
                 <i className="fa-solid fa-calendar-check"></i>
               </div>
               <div className="mgmt-action-info-v2">
-                <h3>Manage Bookings</h3>
-                <p>Update patient schedules</p>
+                <h3>Appointment Management</h3>
+                <p>Review and schedule patient visits</p>
               </div>
               <i className="fa-solid fa-arrow-right mgmt-action-arrow-v2"></i>
             </Link>
@@ -213,11 +275,22 @@ export default function DashboardClient() {
                 <i className="fa-solid fa-folder-open"></i>
               </div>
               <div className="mgmt-action-info-v2">
-                <h3>Clinical Records</h3>
-                <p>Access history & archives</p>
+                <h3>Clinical Archives</h3>
+                <p>Access comprehensive patient records</p>
               </div>
               <i className="fa-solid fa-arrow-right mgmt-action-arrow-v2"></i>
             </Link>
+
+            <div onClick={handleExport30DaysPDF} className="mgmt-action-card-v2" style={{ cursor: 'pointer' }}>
+              <div className="mgmt-action-icon-v2" style={{ background: 'rgba(239, 68, 68, 0.1)', color: '#ef4444' }}>
+                <i className="fa-solid fa-file-pdf"></i>
+              </div>
+              <div className="mgmt-action-info-v2">
+                <h3>Export Monthly Ledger</h3>
+                <p>Generate 30-day clinical register PDF</p>
+              </div>
+              <i className="fa-solid fa-download mgmt-action-arrow-v2"></i>
+            </div>
           </div>
         </div>
       </div>

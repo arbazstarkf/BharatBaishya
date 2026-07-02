@@ -147,6 +147,12 @@
   gap: 0.4rem;
 }
 
+.linkListTwoCols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.6rem 1rem;
+}
+
 .footerLink {
   display: flex;
   align-items: center;
@@ -260,5 +266,11 @@
   .bottomInner {
     flex-direction: column;
     text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .linkListTwoCols {
+    grid-template-columns: 1fr;
   }
 }
